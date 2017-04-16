@@ -1,4 +1,7 @@
 
+/**
+* Метрод проверки с хэшами
+*/
 function genString(len = 5){
     var text = "";
     var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -54,6 +57,9 @@ function hasDupplicate_hashMethod(arr){
 	}
 }
 
+/**
+* Метрод проверки сравнением строк
+*/
 function hasDupplicate_compareEach(arr){
 	let time = new Date().getTime();
 
@@ -75,24 +81,57 @@ function hasDupplicate_compareEach(arr){
 	}
 }
 
+/**
+* Метрод проверки построением индекса
+*/
+function Node(value, wordEnd=false){
+	this.value=value
+	this.wordEnd=wordEnd
+	this.next=null
+}
 
+function Index(){
+	let index={}
+
+	this.add = (str) =>{
+		console.log(str)
+	}
+}
+
+function hasDupplicate_indexMethod(arr){
+	let time = new Date().getTime();
+
+	/* Рабочий рассчёт */
+	/* ... */
+
+	time = new Date().getTime() - time
+	return {
+		time: time,
+		found_duplicate: found_duplicate
+	}
+}
+
+/**
+* Главный процесс
+*/
 let main = () => {
 	console.time('Test total')
 
 	let result={
 		hashMethod: 0,
-		compareMethod: 0
+		compareMethod: 0,
+		indexMethod: 0
 	}
 
 	let i,res,arr,props,program=[
 		{strlen:8, arrsize:10},
 	    {strlen:8, arrsize:30},
 	    {strlen:8, arrsize:100},
-	    {strlen:32, arrsize:100},
-	    {strlen:64, arrsize:10000},
+	    //{strlen:32, arrsize:100},
+	    //{strlen:64, arrsize:10000},
     ]
 
-
+    /*
     // Замеряем методом с хэшами
     console.log('Замеряем методом с хэшами:')
 	for(i=0; i<program.length; i++){
@@ -118,6 +157,12 @@ let main = () => {
 		result.compareMethod+=res.time
 	}
 	console.log(result)
+	*/
+
+	let index = new Index()
+	index.add('bjdanwdi')
+	index.add('owninwn')
+	index.add('bjdanwdi')
 
 	console.timeEnd('Test total')
 }
