@@ -87,13 +87,20 @@ function hasDupplicate_compareEach(arr){
 function Node(value, wordEnd=false){
 	this.value=value
 	this.wordEnd=wordEnd
-	this.next=null
+	this.branches={}
 }
 
 function Index(){
-	let index={}
+	let root={
+		branches: {}
+	}
 
 	this.add = (str) =>{
+		let i,last=str.length-1,ptr=root
+		for(i=0; i<str.length; i++){
+			let node=new Node(str[i], (i==last?true:false))
+			
+		}
 		console.log(str)
 	}
 }
