@@ -160,10 +160,10 @@ let main = () => {
     // Генерируем массивы для тестирования
     program=[
 		{strlen:8, arrsize:10},
-	    //{strlen:8, arrsize:30},
-	    //{strlen:8, arrsize:100},
-	    //{strlen:32, arrsize:100},
-	    //{strlen:64, arrsize:10000},
+	    {strlen:8, arrsize:30},
+	    {strlen:8, arrsize:100},
+	    {strlen:32, arrsize:100},
+	    {strlen:64, arrsize:10000},
     ]
     
     tasks=[] // Набор массивов для тестирования
@@ -181,7 +181,7 @@ let main = () => {
 		
 		// Замеряем методом с хэшами
 		res=hasDupplicate_hashMethod(arr)
-		console.log((i+1)+') ',res)
+		console.log((i+1)+') ',program[i], res)
 		result.hashMethod+=res.time
 	}
 	console.log(result)
@@ -193,7 +193,7 @@ let main = () => {
 		
 		// Замеряем методом с хэшами
 		res=hasDupplicate_compareEach(arr)
-		console.log((i+1)+') ',res)
+		console.log((i+1)+') ',program[i], res)
 		result.compareMethod+=res.time
 	}
 	console.log(result)
@@ -205,12 +205,16 @@ let main = () => {
 		
 		// Замеряем методом с хэшами
 		res=hasDupplicate_indexMethod(arr)
-		console.log((i+1)+') ',res)
+		console.log((i+1)+') ',program[i], res)
 		result.indexMethod+=res.time
 	}
-	console.log(result)
 
-
+    console.log('=============')
+    console.log('Methods total')
+    for(k in result){
+        console.log(k,"\t", result[k]+'ms')
+    }
+    console.log(' ')
 
 	console.timeEnd('Test total')
 }
