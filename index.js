@@ -1,4 +1,3 @@
-
 /**
 * Метрод проверки с хэшами
 */
@@ -143,14 +142,17 @@ function hasDupplicate_indexMethod(arr){
 }
 
 /**
-* Главный процесс
+* Главный процесс тестирования методов
 */
 let main = () => {
+	console.log('============================================================')
+	console.log('Сравниваем эффективность методов поиска дубликатов в массиве')
+	console.log('Задача алгоритма: найти первый дубликат')
 	console.time('Test total')
 
 	let result={
-		hashMethod: 0,
 		compareMethod: 0,
+		hashMethod: 0,
 		indexMethod: 0
 	}
 
@@ -159,11 +161,11 @@ let main = () => {
     
     // Генерируем массивы для тестирования
     program=[
-		{strlen:8, arrsize:10},
-	    {strlen:8, arrsize:30},
 	    {strlen:8, arrsize:100},
-	    {strlen:32, arrsize:100},
-	    {strlen:64, arrsize:10000},
+	    //{strlen:32, arrsize:100},
+	    //{strlen:64, arrsize:10000},
+	    {strlen:8, arrsize:20000},
+	    {strlen:4, arrsize:20000},
     ]
     
     tasks=[] // Набор массивов для тестирования
@@ -174,20 +176,8 @@ let main = () => {
     }
 
     
-    // Замеряем методом с хэшами
-    console.log('Замеряем методом с хэшами:')
-	for(i=0; i<tasks.length; i++){
-		arr=tasks[i]
-		
-		// Замеряем методом с хэшами
-		res=hasDupplicate_hashMethod(arr)
-		console.log((i+1)+') ',program[i], res)
-		result.hashMethod+=res.time
-	}
-	console.log(result)
-
     // Замеряем методом сравнением
-    console.log('Замеряем методом сравнением:')
+    console.log("\nЗамеряем методом сравнения значений очередного с последующими:")
 	for(i=0; i<tasks.length; i++){
 		arr=tasks[i]
 		
@@ -198,8 +188,20 @@ let main = () => {
 	}
 	console.log(result)
     
+    // Замеряем методом с хэшами
+    console.log("\nЗамеряем методом хэширования значений и проверки наличия хэша:")
+	for(i=0; i<tasks.length; i++){
+		arr=tasks[i]
+		
+		// Замеряем методом с хэшами
+		res=hasDupplicate_hashMethod(arr)
+		console.log((i+1)+') ',program[i], res)
+		result.hashMethod+=res.time
+	}
+	console.log(result)
+
     // Замеряем методом индексирования
-    console.log('Замеряем методом индексирования:')
+    console.log("\nЗамеряем методом индексирования массива:")
 	for(i=0; i<tasks.length; i++){
 		arr=tasks[i]
 		
@@ -209,6 +211,7 @@ let main = () => {
 		result.indexMethod+=res.time
 	}
 
+    // Форматированный вывод
     console.log('=============')
     console.log('Methods total')
     for(k in result){
