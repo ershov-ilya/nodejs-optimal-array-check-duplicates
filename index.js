@@ -210,6 +210,7 @@ let main = () => {
 		console.log((i+1)+') ',program[i], res)
 		result.indexMethod+=res.time
 	}
+	console.log(result)
 
     // Форматированный вывод
     console.log('=============')
