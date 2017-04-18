@@ -176,7 +176,7 @@ let main = () => {
     }
 
     
-    // Замеряем методом сравнением
+    // Замеряем методом сравнения
     console.log("\nЗамеряем методом сравнения значений очередного с последующими:")
 	for(i=0; i<tasks.length; i++){
 		arr=tasks[i]
@@ -193,7 +193,6 @@ let main = () => {
 	for(i=0; i<tasks.length; i++){
 		arr=tasks[i]
 		
-		// Замеряем методом с хэшами
 		res=hasDupplicate_hashMethod(arr)
 		console.log((i+1)+') ',program[i], res)
 		result.hashMethod+=res.time
