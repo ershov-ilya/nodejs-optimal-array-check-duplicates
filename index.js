@@ -1,18 +1,19 @@
 /**
 * Метрод проверки с хэшами
 */
-function genString(len = 5){
-    var text = "";
-    var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let alphabet_len = alphabet.length;
-
-    for( var i=0; i < len; i++ )
+let genString = (len = 5) => {
+    let text = ""
+    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    let alphabet_len = alphabet.length
+	
+    let i
+    for( i=0; i < len; i++ )
         text += alphabet.charAt(Math.floor(Math.random() * alphabet_len));
 
     return text;
 }
 
-function genArray (strlen=8, arrsize=3, forceDuplicate=false) {
+let genArray = (strlen=8, arrsize=3, forceDuplicate=false) => {
 	let arr=[]
 	for(i=0; i<arrsize; i++){
 		arr.push(genString(strlen))
@@ -21,14 +22,14 @@ function genArray (strlen=8, arrsize=3, forceDuplicate=false) {
 	return arr
 }
 
-var md5 = require("crypto-js/md5");
-var hash_method = (str) => {
+let md5 = require("crypto-js/md5")
+let hash_method = (str) => {
 	return md5(str).toString()
 }
 
 
-function hasDupplicate_hashMethod(arr){
-	let time = new Date().getTime();
+let hasDupplicate_hashMethod = (arr) => {
+	let time = new Date().getTime()
 	let found_duplicate = false
 
 	/* Рабочий рассчёт */
@@ -59,8 +60,8 @@ function hasDupplicate_hashMethod(arr){
 /**
 * Метрод проверки сравнением строк
 */
-function hasDupplicate_compareEach(arr){
-	let time = new Date().getTime();
+let hasDupplicate_compareEach = (arr) => {
+	let time = new Date().getTime()
 
 	/* Рабочий рассчёт */
 	let i,j, arrlen=arr.length
@@ -83,6 +84,7 @@ function hasDupplicate_compareEach(arr){
 /**
 * Метрод проверки построением индекса
 */
+// Конструктор узла индекса
 function Node(value, wordEnd=false, prev){
 	this.value=value
 	//this.prev=prev
@@ -90,6 +92,7 @@ function Node(value, wordEnd=false, prev){
 	this.branches={}
 }
 
+// Конструктор индекса
 function Index(){
 	this.root={
 		branches: {}
@@ -104,8 +107,8 @@ function Index(){
             if(typeof ptr.branches[str[i]]=='undefined'){
                 // если нет, то создаём новую
                 let node=new Node(str[i], (i==last?1:0), ptr)
-                ptr.branches[str[i]]=node;
-                ptr=node;
+                ptr.branches[str[i]]=node
+                ptr=node
                 //console.log('Новый узел', node)
             } else {
                 current=ptr.branches[str[i]]
@@ -120,7 +123,7 @@ function Index(){
 	}
 }
 
-function hasDupplicate_indexMethod(arr){
+let hasDupplicate_indexMethod = (arr) => {
 	let found_duplicate=false, time = new Date().getTime();
     
     let index = new Index()
@@ -144,7 +147,7 @@ function hasDupplicate_indexMethod(arr){
 /**
 * Главный процесс тестирования методов
 */
-let main = () => {
+(() => {
 	console.log('============================================================')
 	console.log('Сравниваем эффективность методов поиска дубликатов в массиве')
 	console.log('Задача алгоритма: найти первый дубликат')
@@ -157,7 +160,7 @@ let main = () => {
 	}
 
     // переменные
-	let i,res,arr,props,program
+	let i,k,res,arr,props,program
     
     // Генерируем массивы для тестирования
     program=[
@@ -220,6 +223,4 @@ let main = () => {
     console.log(' ')
 
 	console.timeEnd('Test total')
-}
-
-main()
+})()
