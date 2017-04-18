@@ -18,13 +18,14 @@
 
 Для того чтобы провести тестирование на массивах из длинных строк, необходимо раскомментировать строки:
 ```
-    // Генерируем массивы для тестирования
     program=[
-	    {strlen:8, arrsize:100},
-	    //{strlen:32, arrsize:100},
+	    {strlen:8, arrsize:10000},
+	    {strlen:10, arrsize:10000},
+	    {strlen:12, arrsize:10000},
+	    {strlen:14, arrsize:10000},
+	    {strlen:16, arrsize:10000},
+	    //{strlen:32, arrsize:10000},
 	    //{strlen:64, arrsize:10000},
-	    {strlen:8, arrsize:20000},
-	    {strlen:4, arrsize:20000},
     ]
 ```
 
